@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { FirestoreService } from '../services/firestore/firestore.service'
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,16 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  predefinedRoutes: Observable<any>;
+  constructor(private firestoreService: FirestoreService) { }
+
+  ngOnInit(): void {
+    this.getRoutes();
+
+  }
+
+  getRoutes() {
+    this.predefinedRoutes = this.firestoreService.getRoutes()
+  }
 
 }
