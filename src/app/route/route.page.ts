@@ -36,9 +36,16 @@ export class RoutePage implements OnInit {
 
 
   ngOnInit(): void {
-    this.firestoreService.getRoute(this.routeParams).subscribe(route => {
-      this.routeData = route.payload.data();
-    })
+
+    this.route.paramMap.subscribe(params => {
+      let id = params.get('id');
+      console.log(id);
+      this.firestoreService.getRoute(id).subscribe(route => {
+        this.routeData = route.payload.data();
+      })
+   });
+
+    
   }
 
 
