@@ -1,0 +1,117 @@
+.route-settings-container{
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, fit-content(33%));
+    place-items: center;
+    margin-left: 2rem;
+}
+
+#people-selector-container{
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    width: 10rem ;
+    height: 3.5rem ;
+}
+
+#people-selector-container > p{
+    font-size: 1.5rem;
+    margin-top: 0.7rem;
+}
+
+#people-selector-container > img{
+    width: 1.5rem;
+    height: auto;
+}
+
+.route-page-arrow{
+    display: grid;
+    margin-left: 0.5rem;
+    border: none;
+    background-color: white;
+}
+
+#arrow-number-people-image-up{
+    transform: rotate(90deg);
+    width: 1rem;
+    height: auto;
+}
+#arrow-number-people-image-down{
+    transform: rotate(-90deg);
+    width: 1rem;
+    height: auto;
+}
+
+.datetime-selector-container{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    place-items: center;
+    width: 13rem !important;
+    height: 3.5rem !important;
+    margin-left: 2rem;
+}
+
+.datetime-selector-container > p{
+    font-size: 1.5rem;
+    margin-top:0.5rem;
+}
+
+.datetime-selector-container > img{
+    width: 1.5rem;
+    height: auto;
+}
+
+@media (max-width: 967px) {
+
+    #route-template{
+        grid-template-columns: repeat(1, 100%);
+        
+    }
+
+    #map-container{
+        grid-row: 1;
+        margin-bottom:2em;
+    }
+
+    .cart-btn{
+        position: relative;
+        float:none;
+        justify-self: center;
+        margin-right: unset;
+        margin-top: 3rem;
+    }
+
+    .activity-duration{
+        width: 22vw;
+        padding-left:5vw;
+
+    }
+
+    #timetable{
+
+        width: 40rem;
+    }
+
+    .route-settings-container{
+        margin-left: unset;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+
+    }
+
+    .input_overlay{
+        margin-top:1rem;
+        width: 15rem !important;
+        margin-left:unset
+    }
+
+    .people-selector-container{
+        justify-content: center !important;
+        place-items: center;
+    }
+  }
+
+
+
