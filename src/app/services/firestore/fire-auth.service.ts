@@ -69,13 +69,8 @@ export class FireAuthService {
     });
     return logged;
   }
-
-  getCurrentUser(): Observable<any> {
-    var user = new Subject<any>();
-    this.angularFireAuth.authState.subscribe(userResponse => {
-      user.next(userResponse);
-    })
-    return user.asObservable();
+  userDetails(){
+    return this.angularFireAuth.user;
   }
 
 }
