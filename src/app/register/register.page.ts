@@ -40,13 +40,20 @@ export class RegisterPage implements OnInit {
     console.log(this.email);
     console.log(this.registerForm.value.password);
     this.fireAuth.singUp(this.email, this.registerForm.value.password).then(() => {
-      this.openToast();
+      this.openToast().then(() =>{
+        this.navigateTo('home');
+      });
 
     }).catch((error) => {
       this.errorToast();
 
     });
 
+  }
+  navigateTo(route: string): void {
+    this.router.navigate([route]).then(() =>{
+      window.location.reload();
+    });
   }
 
   async openToast() {
