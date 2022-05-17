@@ -5,6 +5,11 @@
 
     <form class="formContainer" [formGroup]="registerForm"  novalidate (ngSubmit)="registerUser()">
 
+      <ion-input type="text" name="nameSurname" class="input_overlay validation-text" placeholder="enter your full name" formControlName="fullName">
+
+
+      </ion-input>
+
       <ion-input type="password" name="passwordLogin" class="input_overlay validation-text" placeholder="enter your password" formControlName="password"
              [class.valid]="registerForm.get('password')?.valid &&
               (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)"

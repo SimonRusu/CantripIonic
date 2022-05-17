@@ -24,7 +24,8 @@ export class RegisterPage implements OnInit {
       password: new FormControl('', [Validators.required,
         Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.:,#_()\/]).{8,}$')]),
 
-      confirmPassword: new FormControl('', [Validators.required])
+      confirmPassword: new FormControl('', [Validators.required]),
+      fullName: new FormControl('', [Validators.required])
     }, {validators:this.checkPasswords});
 
   }
@@ -39,7 +40,7 @@ export class RegisterPage implements OnInit {
   registerUser(): void{
     console.log(this.email);
     console.log(this.registerForm.value.password);
-    this.fireAuth.singUp(this.email, this.registerForm.value.password).then(() => {
+    this.fireAuth.singUp(this.email, this.registerForm.value.password, this.registerForm.value.fullName).then(() => {
       this.openToast().then(() =>{
         this.navigateTo('home');
       });
