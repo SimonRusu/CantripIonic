@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
+import {updateProfile} from "@angular/fire/auth";
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,11 @@ export class FireAuthService {
   constructor(private angularFireAuth: AngularFireAuth, private router: Router) {
   }
 
-  async singUp(email: string, password: string) {
-
+  async singUp(email: string, password: string, fullName: string,) {
     this.angularFireAuth.createUserWithEmailAndPassword(email, password).then(resp => {
+      resp.user.updateProfile({
+        displayName: fullName,
+      });
     })
       .catch(error => {
         console.log("Something went wrong in register: ", error.message);
@@ -69,13 +72,8 @@ export class FireAuthService {
     });
     return logged;
   }
-
-  getCurrentUser(): Observable<any> {
-    var user = new Subject<any>();
-    this.angularFireAuth.authState.subscribe(userResponse => {
-      user.next(userResponse);
-    })
-    return user.asObservable();
+  userDetails(){
+    return this.angularFireAuth.user;
   }
 
 }
