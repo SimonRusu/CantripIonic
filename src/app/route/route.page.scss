@@ -1,0 +1,57 @@
+
+.cart-btn{
+    float: right;
+    border:none;
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+    background-color: #00B4D8;
+    margin-top: 1rem;
+    justify-self: center;
+    align-self: center;
+}
+
+#cart-img{
+    width: 3rem;
+    height: auto;
+
+}
+
+.route-container{
+    display: grid;
+    grid-template-columns: repeat(2, 45%);
+    place-items: center;
+    margin-top: 3rem;
+    position: relative;
+    margin-bottom: 10rem;
+    padding-left: 2.5rem;
+}
+
+.map-button-container{
+    display: grid;
+    grid-template-columns: repeat(1, 100%);
+}
+app-map{
+    padding-left: 1rem;
+}
+
+@media (max-width: 1339px) {
+    .route-container{
+        padding-left: unset;
+        grid-template-columns: repeat(1, 100%);
+    }
+    .map-button-container{
+        grid-row: 1;
+        margin-bottom:2em;
+        padding-left: unset;
+    }
+
+    .cart-btn{
+        position: relative;
+        float:none;
+        justify-self: center;
+        margin-right: unset;
+        margin-top: 3rem;
+    }
+
+}

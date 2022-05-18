@@ -11,12 +11,34 @@ import { environment } from 'src/environments/environment';
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 
 
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
+
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { SQLite } from '@ionic-native/sqlite/ngx';
+import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
+
+
+
+AngularFireModule.initializeApp(environment.firebase);
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebase)],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule],
+  providers: [
+    SQLite,
+    SQLitePorter,
+    { provide: BUCKET, useValue: 'cantrip-3c78d.appspot.com' },
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
