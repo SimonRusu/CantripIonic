@@ -48,7 +48,7 @@ export class SQLiteService {
     return this.isDbReady.asObservable();
   }
  
-  fetchRoutes(): Observable<Route[]> {
+  fetchRoutes(): Observable<RouteSQLite[]> {
     return this.routeList.asObservable();
   }
 
@@ -86,7 +86,7 @@ export class SQLiteService {
 
   async getFavRoutesByUser(uuid: string){
     return this.storage.executeSql('SELECT * FROM favRoutes where uuid = ?', [uuid]).then(res => {
-      let route: Route[] = [];
+      let route: RouteSQLite[] = [];
       if (res.rows.length > 0) {
         for (var i = 0; i < res.rows.length; i++) { 
         }
