@@ -15,7 +15,7 @@
   <section class="outstanding-routes-container">
     <div *ngFor="let predefinedRoute of predefinedRoutes | async">
 
-      <app-card-home [numberOfPeople]="predefinedRoute.payload.doc.data()['numberOfPeople']"
+      <app-card-home [routerLink]="['/route/', predefinedRoute.payload.doc.id]" routerLinkActive="active" [numberOfPeople]="predefinedRoute.payload.doc.data()['numberOfPeople']"
         [price]="predefinedRoute.payload.doc.data()['price']"
         [routeName]="predefinedRoute.payload.doc.data()['routeName']"
         [thumbnailPath]="predefinedRoute.payload.doc.data()['thumbnailPath']"

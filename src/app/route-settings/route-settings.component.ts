@@ -20,10 +20,9 @@ export class RouteSettingsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    $("span").click(function(){
-      $(this).text(($(this).text() == 'star_border') ? 'grade' : 'star_border');    
-    }); 
-    
+
+    this.setFavouriteIcon();
+
     this.db.dbState().subscribe((res) => {
       if(res){
         this.db.fetchRoutes().subscribe(item => {
@@ -31,6 +30,21 @@ export class RouteSettingsComponent implements OnInit {
         })
       }
     });
+  }
+
+  async setFavouriteIcon(){
+    this.db.getFavRoute(this.routeId).subscribe(foundRoute =>{
+      if(foundRoute == "true"){
+          $('#starIcon').text("grade");
+      }
+      else{
+          $('#starIcon').text("star_border");
+      }
+    })
+
+      $("#starIcon").click(function(){
+        $(this).text(($(this).text() == 'star_border') ? 'grade' : 'star_border');    
+      }); 
   }
 
   saveFavourite() {

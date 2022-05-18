@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { FirestoreService } from '../services/firestore/firestore.service'
 
@@ -20,5 +21,6 @@ export class HomePage {
   getRoutes() {
     this.predefinedRoutes = this.firestoreService.getRoutes()
   }
+
 
 }

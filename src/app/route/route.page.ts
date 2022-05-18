@@ -26,17 +26,16 @@ export interface Route {
 
 export class RoutePage implements OnInit {
 
-  routeParams = this.route.snapshot.paramMap.get('id');
+  routeParams = this.activatedRoute.snapshot.params["id"];
   routeId !: string;
   routeData : any;
 
 
-  constructor(private route: ActivatedRoute, private firestoreService: FirestoreService) {   
+  constructor(private activatedRoute: ActivatedRoute, private firestoreService: FirestoreService) {   
   }
 
   ngOnInit(): void {
-    
-    this.firestoreService.getRoute('0aAsK0tTyNz73NaLARWE').subscribe(route => {
+    this.firestoreService.getRoute(this.routeParams).subscribe(route => {
       this.routeData = route.payload.data();
       this.routeId = route.payload.id;
     })
