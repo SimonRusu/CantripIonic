@@ -9,17 +9,6 @@ import {
   getDocs
 } from "firebase/firestore";
 
-export interface Activity {
-  activityName: string;
-  activityId: number;
-  numberOfPeople: number;
-  price: number;
-  activityType: string;
-  dateAvailability: string[];
-  timeAvailability: string[];
-  timeDuration: number;
-  maxConcurrentActivity: string
-}
 
 @Component({
   selector: 'app-timetable',
@@ -30,27 +19,24 @@ export class TimetableComponent implements OnInit {
   @Input() routeActivities : any;
   @Input() startActivityTime : string;
   
-  activities :Array<Activity> = [];
-  actParseData : Array<any> =[];
-  subject = new Subject<Array<any>>();
-  displayActivities = new Observable<Array<any>>();
+  activities :Array<any> = [];
+  displayActivities : Array<any> =[];
 
   constructor(private firestoreService: FirestoreService) {
   }
     ngOnInit(): void {
-      this.displayActivities = this.getActivitiesData();
+      this.getActivitiesData();
     }
 
-    getActivitiesData(): Observable<Array<any>>{
-      this.firestoreService.getActivitiesById(this.routeActivities).subscribe(items =>{
-        this.activities = items as Activity[];
+    getActivitiesData(): void{
+        this.activities = this.routeActivities;
         let selectedTime = '';
         let startActivity = this.startActivityTime;
 
         for(let activity of this.activities){
           let findHour = false;
+          
           for(let actualTime of activity.timeAvailability){
-            
             if(this.hourToInt(actualTime) >= this.hourToInt(startActivity)){
               selectedTime = actualTime;
               startActivity = this.intToHour(this.hourToInt(actualTime)+activity.timeDuration);
@@ -60,19 +46,15 @@ export class TimetableComponent implements OnInit {
           }
 
           if(findHour){
-            this.actParseData.push(
+            this.displayActivities.push(
               {
-                name: activity.activityName,
+                name: activity.name,
                 selectedTime: selectedTime,
                 finishActivity: startActivity
               });
               findHour = false;
           }
         }
-        this.subject.next(this.actParseData);
-        
-      })
-      return this.subject.asObservable();
     }
 
 

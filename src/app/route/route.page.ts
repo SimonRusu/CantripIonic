@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
+import { switchMap } from 'rxjs/operators';
 import {FirestoreService} from "../services/firestore/firestore.service";
 
 
@@ -25,30 +26,20 @@ export interface Route {
 
 export class RoutePage implements OnInit {
 
-  routeParams = this.route.snapshot.params['routeId'];
-  routeIdFromRoute !: string;
+  routeParams = this.route.snapshot.paramMap.get('id');
+  routeId !: string;
   routeData : any;
 
 
-  constructor(private route: ActivatedRoute, private firestoreService: FirestoreService) {
-    
+  constructor(private route: ActivatedRoute, private firestoreService: FirestoreService) {   
   }
-
 
   ngOnInit(): void {
-
-    this.route.paramMap.subscribe(params => {
-      let id = params.get('id');
-      console.log(id);
-      this.firestoreService.getRoute(id).subscribe(route => {
-        this.routeData = route.payload.data();
-      })
-   });
-
+    
+    this.firestoreService.getRoute('0aAsK0tTyNz73NaLARWE').subscribe(route => {
+      this.routeData = route.payload.data();
+      this.routeId = route.payload.id;
+    })
     
   }
-
-
-
-
 }

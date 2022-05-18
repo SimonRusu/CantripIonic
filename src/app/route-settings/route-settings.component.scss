@@ -1,7 +1,7 @@
 .route-settings-container{
     margin-top: 2rem;
     display: grid;
-    grid-template-columns: repeat(3, fit-content(33%));
+    grid-template-columns: repeat(4, fit-content(25%));
     place-items: center;
     margin-left: 2rem;
 }
@@ -12,6 +12,16 @@
     justify-content: center;
     width: 10rem ;
     height: 3.5rem ;
+}
+
+#favourite-container{
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    width: 5rem ;
+    height: 3.5rem ;
+    margin-left: 2rem;
+    cursor: pointer;
 }
 
 #people-selector-container > p{
@@ -110,6 +120,10 @@
     .people-selector-container{
         justify-content: center !important;
         place-items: center;
+    }
+
+    #favourite-container{
+        margin-left: unset;
     }
   }
 

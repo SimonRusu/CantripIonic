@@ -13,7 +13,9 @@ import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
 
 import { AngularFireModule} from '@angular/fire/compat'
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { RoutePage } from './route/route.page';
+import { SQLite } from '@ionic-native/sqlite/ngx';
+import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
+
 
 
 AngularFireModule.initializeApp(environment.firebase);
@@ -31,6 +33,8 @@ AngularFireModule.initializeApp(environment.firebase);
     AngularFirestoreModule,
     AngularFireStorageModule],
   providers: [
+    SQLite,
+    SQLitePorter,
     { provide: BUCKET, useValue: 'cantrip-3c78d.appspot.com' },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
