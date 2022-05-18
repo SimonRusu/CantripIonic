@@ -1,0 +1,46 @@
+.route-info {
+    display: flex;
+    justify-content: space-evenly;
+    align-self: end;
+}
+
+.outstanding-routes-img {
+    margin-top: 0;
+    width: 90%;
+    height: 80%;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.user-icon {
+    width: 1rem;
+    height: auto;
+    margin-left: 0.5rem;
+}
+
+#favourite-container{
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    width: 3rem ;
+    height: 3rem ;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+
+
+.headerContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerContainer>p{
+    margin-left: 3rem;
+}
+
+#starIcon{
+    cursor: pointer;
+}

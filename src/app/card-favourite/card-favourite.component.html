@@ -1,0 +1,18 @@
+<div>
+  <article class="cardCanTrip">
+
+    <div class="headerContainer">
+      <p>{{routeName}}</p>
+      <div class="input_overlay" id="favourite-container"> 
+        <span (click)="deleteFavourite();" class="material-icons md-36" id="starIcon">grade</span>
+      </div>
+    </div>
+    
+    <img [routerLink]="['/route/', routeId]" routerLinkActive="active" class="outstanding-routes-img" [src]="thumbnailPath" alt="">
+    <div class="route-info">
+      <p> {{numberOfPeople}}<img class="user-icon" src="assets/media/user-icon.png"></p>
+      <p>{{price}}</p>
+    </div>
+
+  </article>
+</div>

@@ -18,12 +18,12 @@
   <section class="outstanding-routes-container">
     <div *ngFor="let favRoute of favRoutes">
 
-      <app-card-home [routerLink]="['/route/', favRoute.routeId]" routerLinkActive="active" [numberOfPeople]="favRoute.route.numberOfPeople"
+      <app-card-favourite [numberOfPeople]="favRoute.route.numberOfPeople"
         [price]="favRoute.route.price"
         [routeName]="favRoute.route.routeName"
         [thumbnailPath]="favRoute.route.thumbnailPath"
         [routeId]="favRoute.routeId">
-      </app-card-home>
+      </app-card-favourite>
 
     </div>
 

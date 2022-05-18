@@ -20,16 +20,7 @@ export class RouteSettingsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     this.setFavouriteIcon();
-
-    this.db.dbState().subscribe((res) => {
-      if(res){
-        this.db.fetchRoutes().subscribe(item => {
-          console.log(item);
-        })
-      }
-    });
   }
 
   async setFavouriteIcon(){
@@ -40,7 +31,7 @@ export class RouteSettingsComponent implements OnInit {
       else{
           $('#starIcon').text("star_border");
       }
-    })
+    }).unsubscribe();
 
       $("#starIcon").click(function(){
         $(this).text(($(this).text() == 'star_border') ? 'grade' : 'star_border');    
