@@ -13,15 +13,13 @@
     </ion-toolbar>
   </ion-header>
 
-  <h1 class="text-center">MIS FAVORITOS</h1>
+  <h1 class="text-center">My Favourites</h1>
 
   <section class="outstanding-routes-container">
     <div *ngFor="let favRoute of favRoutes">
 
-      <app-card-favourite [numberOfPeople]="favRoute.route.numberOfPeople"
-        [price]="favRoute.route.price"
-        [routeName]="favRoute.route.routeName"
-        [thumbnailPath]="favRoute.route.thumbnailPath"
+      <app-card-favourite [numberOfPeople]="favRoute.route.numberOfPeople" [price]="favRoute.route.price"
+        [routeName]="favRoute.route.routeName" [thumbnailPath]="favRoute.route.thumbnailPath"
         [routeId]="favRoute.routeId">
       </app-card-favourite>
 

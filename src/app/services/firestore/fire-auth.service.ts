@@ -21,9 +21,9 @@ export class FireAuthService {
       });
     })
       .catch(error => {
-        console.log('Something went wrong in register: ', error.message);
+        console.log("Something went wrong in register: ", error.message);
 
-      });
+      })
 
   }
 

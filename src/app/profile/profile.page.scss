@@ -1,0 +1,89 @@
+.profile_container {
+    text-align: center;
+    width: 100%;
+    margin-top: 5rem;
+}
+
+.imageContainer>.userImage {
+    height: 15em;
+    width: 15em;
+    border-radius: 50%;
+}
+
+.email_container,
+.name_container,
+.photo_container {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-photo {
+    display: flex;
+    flex-direction: row;
+}
+
+.email_element>img,
+.name_element>img,
+.photo_element>label>img {
+    object-fit: contain;
+    height: 20px;
+    padding-left: 3em;
+    cursor: pointer;
+}
+
+.email_element>input,
+.name_element>input,
+.photo_element>input {
+    outline: none;
+    border: none;
+    background: none;
+    width: 15rem;
+}
+
+.email_element,
+.name_element,
+.photo_element {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.photo_element {
+    flex-direction: column;
+}
+
+.password_button {
+    text-align: center;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.input_cover {
+    border-radius: 1rem;
+    height: 3rem;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    color: black;
+    padding: 1em;
+}
+
+.logout {
+    background-color: #FFCB69;
+    color: black;
+    width: 5rem;
+    font-size: 0.8rem;
+    margin-top: 2rem;
+}
+
+.favourite {
+    background-color: #00B4D8;
+    color: white;
+    width: 10rem;
+    font-size: 1.5rem;
+}

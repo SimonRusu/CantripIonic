@@ -8,7 +8,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
-import {AngularFireAuthModule} from "@angular/fire/compat/auth";
+import { HeaderPage } from './header/header.page';
+import { HeaderLoginPage } from './header-login/header-login.page';
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 
 
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
@@ -23,7 +25,7 @@ import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 AngularFireModule.initializeApp(environment.firebase);
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderPage, HeaderLoginPage],
   entryComponents: [],
   imports: [
     BrowserModule, 

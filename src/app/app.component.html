@@ -1,3 +1,17 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-header class="headerBackground">
+    <ion-buttons>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+  </ion-header>
+  <div *ngIf="logged; else notLoggedIn">
+    <app-header-login></app-header-login>
+  </div>
+  <ng-template #notLoggedIn>
+    <app-header></app-header>
+  </ng-template>
+
+
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>
