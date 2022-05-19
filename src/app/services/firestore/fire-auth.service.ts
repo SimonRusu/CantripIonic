@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import {updateProfile} from "@angular/fire/auth";
+import { updateProfile } from "@angular/fire/auth";
 
 @Injectable({
   providedIn: 'root'
@@ -72,7 +72,7 @@ export class FireAuthService {
     });
     return logged;
   }
-  userDetails(){
+  userDetails() {
     return this.angularFireAuth.user;
   }
 
