@@ -1,26 +1,32 @@
+<ion-content>
   <div *ngIf="routeData; else empty">
-    <h1 class="text-center">{{routeData.routeName}}</h1>
-    <app-route-settings [routeId]="routeId" [routeData]="routeData" [numberOfPeople]="routeData.numberOfPeople" [date]="routeData.dateAvailability[0]" [startingTime]="routeData.startTime" [userUuid]="user?.uid"></app-route-settings>
-    <div class="route-container">
-      <app-timetable [routeActivities]="routeData.activities" [startActivityTime]="routeData.startTime"></app-timetable>
-    <div class="map-button-container">
-      <app-map [routeImage]="routeData.thumbnailPath"></app-map>
-      <button class="cart-btn"><img src="../assets/media/shoppingcart-icon.png" id="cart-img"></button>
-    </div>
-    </div>
-</div>
 
-<ng-template #empty>
-<h1 class="text-center">Route Name</h1>
-    <app-route-settings [numberOfPeople]="0" [date]="'19/04/2022'" [startingTime]="'10:00'"></app-route-settings>
-    <div class="route-container">
-      <app-timetable [routeActivities]="[]" [startActivityTime]="'10:00'"></app-timetable>
-      <div class="map-button-container">
-        <app-map></app-map>
-        <button class="cart-btn"><img src="../assets/media/shoppingcart-icon.png" id="cart-img"></button>
-      </div>
-    </div>
+        <h1 class="text-center">{{routeData.routeName}}</h1>
+        <app-route-settings [routeId]="routeId" [routeData]="routeData" [numberOfPeople]="routeData.numberOfPeople" [date]="routeData.dateAvailability[0]" [startingTime]="routeData.startTime" [userUuid]="user?.uid"></app-route-settings>
+        <div class="route-container">
+          <app-timetable [routeActivities]="routeData.activities" [startActivityTime]="routeData.startTime"></app-timetable>
+        <div class="map-button-container">
+          <app-map [routeImage]="routeData.thumbnailPath"></app-map>
+          <button class="cart-btn"><img src="../assets/media/shoppingcart-icon.png" id="cart-img"></button>
+        </div>
+        </div>
+
+  </div>
 
 
+  <ng-template #empty>
+      <h1 class="text-center">Route Name</h1>
+        <app-route-settings [numberOfPeople]="0" [date]="'19/04/2022'" [startingTime]="'10:00'"></app-route-settings>
+        <div class="route-container">
+          <app-timetable [routeActivities]="[]" [startActivityTime]="'10:00'"></app-timetable>
+          <div class="map-button-container">
+            <app-map></app-map>
+            <button class="cart-btn"><img src="../assets/media/shoppingcart-icon.png" id="cart-img"></button>
+          </div>
+        </div>
 
-<div class="w-100 footer-margin"></div>
+
+  </ng-template>
+
+  <div class="w-100 footer-margin"></div>
+</ion-content>
