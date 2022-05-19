@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-
+//import { ToastController } from "@ionic/angular";
 import { FireAuthService } from '../services/firestore/fire-auth.service';
 
 @Component({
@@ -13,60 +13,55 @@ export class ProfilePage implements OnInit {
   profileData = new Observable<any>();
   predefinedData = new Observable<any>();
   subject = new Subject<any>();
-  updatedEmail: string;
   updatedName: string;
 
-  constructor(public fireAuth: FireAuthService) {
+
+  constructor(public fireAuth: FireAuthService/*, private toastCtrl: ToastController*/) {
   }
 
   ngOnInit(): void {
     this.profileData = this.fireAuth.userDetails();
+    this.profileData.subscribe(user => {
+      user.updateProfile({
+        displayName: "Maria"
+      });
+      //this.openToast();
+    })
   }
 
-  openImageDialog(): void {
-    /* const dialogRef = this.dialog.open(ImageSelectorModalComponent,
+  /*openImageDialog(): void {
+    const dialogRef = this.dialog.open(ImageSelectorModalComponent,
        {
          panelClass: "image-selector-dialog-container",
-       });*/
+       });
+  }*/
+
+  /*async openToast() {
+    const toast = await this.toastCtrl.create({
+      message: 'Changed name successfully!',
+      duration: 3000
+    });
+    toast.present();
   }
 
-  openSuccessDialog(): void {
-    /*this.dialog.open(AlertModalComponent,
-      {
-        data: {
-          dialogTitle: "Your name has been changed",
-          dialogText: "you can log in now with " + this.updatedEmail,
-          dialogIcon: "task_alt",
-          dialogIconColor: "green"
-        }
-      });*/
-  }
+  async errorToast() {
+    const toast = await this.toastCtrl.create({
+      message: 'There was an error changing the name. Try it again later.',
+      duration: 3000
+    });
+    toast.present();
 
-  openDismissDialog(error: string): void {
-    /*this.dialog.open(AlertModalComponent,
-       {
-         data: {
-           dialogTitle: "The operation could not be satisfied",
-           dialogText: error,
-           dialogIcon: "cancel",
-           dialogIconColor: "red"
-         }
-       });*/
-  }
+  }*/
 
 
   editName(): void {
-    this.fireAuth.userDetails();
-    /*this.fireAuth.getCurrentUser().subscribe(user => {
-      user.updateEmail(this.updatedEmail).then(() => {
-        this.openSuccessDialog();
-      })
-        .catch((err: any) => {
-          this.openDismissDialog(err);
-        }
+    this.profileData.subscribe(user => {
+      user.updateProfile({
+        displayName: this.updatedName
+      });
+      //this.openToast();
+    })
 
-        )
-    })*/
   }
 
   logout() {

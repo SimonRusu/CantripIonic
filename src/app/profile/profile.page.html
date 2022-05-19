@@ -1,27 +1,27 @@
 <ion-content>
-<section class="profile_container">
-    <div  class="imageContainer" (click)="openImageDialog()">
-        <img class ="userImage" src={{(profileData|async)?.photoURL}} onerror="if (this.src != '') this.src = './assets/media/user.jpg';" /> 
-        <img class="editIcon" type="image" src="../assets/media/edit-icon.png" />   
-    </div>
-            
-</section>
+    <section class="profile_container">
+        <div class="imageContainer" (click)="openImageDialog()">
+            <img class="userImage" alt="User profile photo" src="{{(profileData|async)?.photoURL}}"
+                onerror="if (this.src != '') this.src = './assets/media/user.jpg';" />
+            <img class="editIcon" type="image" src="../assets/media/edit-icon.png" alt="User profile photo" />
+        </div>
 
-<section class="email_container">
-    <div class="email_element input_cover">
-        <input placeholder="{{(profileData|async)?.email}}" type="text" [(ngModel)]="updatedEmail"  />
-    </div>
-</section>
+    </section>
 
-<section class="name_container">
-    <div class="name_element input_cover">
-        <input placeholder="{{(profileData|async)?.name}}" type="text" [(ngModel)]="updatedName"  />
-        <img src="../assets/media/edit-icon.png" (click)="editName()"/>
-    </div>
-</section>
+    <section class="email_container">
+        <div class="email_element input_cover">
+            <input placeholder="{{(profileData|async)?.email}}" type="text" />
+        </div>
+    </section>
 
-<div class="password_button">
-    <input type="submit" class="input_overlay_submit" value="Change password"/>
-    <input type="submit" (click)="logout()" class="input_overlay_submit logout" value="Logout"/>
-</div>
+    <section class="name_container">
+        <div class="name_element input_cover">
+            <input placeholder="{{(profileData|async)?.displayName}}" type="text" [(ngModel)]="updatedName" />
+            <img src="../assets/media/edit-icon.png" alt="Edit name" (click)="editName()" [>
+        </div>
+    </section>
+
+    <div class="password_button">
+        <input type="submit" (click)="logout()" class="input_overlay_submit logout" value="Logout" />
+    </div>
 </ion-content>
