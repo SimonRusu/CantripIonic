@@ -21,28 +21,31 @@ export class RouteSettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.setFavouriteIcon();
+    $("#starIcon").click(function(){
+      $(this).text(($(this).text() === 'star_border') ? 'grade' : 'star_border');
+    });
   }
 
   async setFavouriteIcon(){
-    this.db.getFavRoute(this.routeId).subscribe(foundRoute =>{
-      if(foundRoute == "true"){
-          $('#starIcon').text("grade");
+    console.log("se ejecuta");
+    await this.db.getFavRoute(this.routeId).forEach(foundRoute => {
+      if (foundRoute === "true") {
+        console.log("favorita");
+        $('#starIcon').text('grade');
+      } else {
+        $('#starIcon').text('star_border');
       }
-      else{
-          $('#starIcon').text("star_border");
-      }
-    }).unsubscribe();
+    });
 
-      $("#starIcon").click(function(){
-        $(this).text(($(this).text() == 'star_border') ? 'grade' : 'star_border');    
-      }); 
+
   }
 
   saveFavourite() {
+
     this.db.addFavSwitch(
       this.routeId,
       "uuid",
       JSON.stringify(this.routeData)
-    )                                   
+    );
   }
 }

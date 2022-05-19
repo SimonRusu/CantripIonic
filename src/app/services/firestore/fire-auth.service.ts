@@ -17,12 +17,13 @@ export class FireAuthService {
     this.angularFireAuth.createUserWithEmailAndPassword(email, password).then(resp => {
       resp.user.updateProfile({
         displayName: fullName,
+        photoURL: '../assets/media/user.jpg'
       });
     })
       .catch(error => {
-        console.log("Something went wrong in register: ", error.message);
+        console.log('Something went wrong in register: ', error.message);
 
-      })
+      });
 
   }
 

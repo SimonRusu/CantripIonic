@@ -26,7 +26,7 @@ export class CardFavouriteComponent implements OnInit {
         message: 'Ruta eliminada de favoritos',
         duration: 1000
       });
-      toast.present();      
+      toast.present();
     })
   }
 

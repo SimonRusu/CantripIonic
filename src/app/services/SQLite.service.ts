@@ -16,8 +16,8 @@ export class SQLiteService {
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(
-    private platform: Platform, 
-    private sqlite: SQLite, 
+    private platform: Platform,
+    private sqlite: SQLite,
 
   ) {
     this.platform.ready().then(() => {
@@ -47,7 +47,7 @@ export class SQLiteService {
   dbState() {
     return this.isDbReady.asObservable();
   }
- 
+
   fetchRoutes(): Observable<RouteSQLite[]> {
     return this.routeList.asObservable();
   }
@@ -56,13 +56,13 @@ export class SQLiteService {
     return this.storage.executeSql('SELECT * FROM favRoutes', []).then(res => {
       let route: RouteSQLite[] = [];
       if (res.rows.length > 0) {
-        for (var i = 0; i < res.rows.length; i++) { 
+        for (var i = 0; i < res.rows.length; i++) {
           route.push({
             routeId: res.rows.item(i).routeId,
             uuid: "uuid",
             route: JSON.parse(res.rows.item(i).route)
           })
-          
+
         }
       }
       this.routeList.next(route);
@@ -88,7 +88,7 @@ export class SQLiteService {
     return this.storage.executeSql('SELECT * FROM favRoutes where uuid = ?', [uuid]).then(res => {
       let route: RouteSQLite[] = [];
       if (res.rows.length > 0) {
-        for (var i = 0; i < res.rows.length; i++) { 
+        for (var i = 0; i < res.rows.length; i++) {
         }
       }
       this.routeList.next(route);
@@ -104,7 +104,7 @@ export class SQLiteService {
       this.getFavRoutes();
     });
   }
- 
+
   // Delete
   async deleteFavRoute(routeId:string) {
     return this.storage.executeSql('DELETE FROM favRoutes WHERE routeId = ?', [routeId])
