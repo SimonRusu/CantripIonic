@@ -1,0 +1,17 @@
+#map-image{
+    width: 40rem;
+    height:auto;
+    border-radius: 2rem;
+}
+
+@media(max-width: 967px){
+    #map-image{
+        width: 30rem;
+    }
+}
+
+@media(max-width: 578px){
+    #map-image{
+        width: 20rem;
+    }
+}

@@ -24,10 +24,6 @@ const routes: Routes = [
     loadChildren: () => import('./password/password.module').then(m => m.PasswordPageModule)
   },
   {
-    path: '/route-page/:routeId',
-    /*loadChildren: () => import('./route-page').then(m => m.HomePageModule)*/
-  },
-  {
     path: 'header-login',
     loadChildren: () => import('./header-login/header-login.module').then(m => m.HeaderLoginPageModule)
   },
@@ -37,8 +33,20 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfilePageModule)
   },
+  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then(m => m.RegisterPageModule)
+  },
+  {
+    path: 'route/:id',
+    loadChildren: () => import('./route/route.module').then(m => m.RoutePageModule)
+  },
+  {
+    path: 'favoritos',
+    loadChildren: () => import('./favourite/favourite.module').then(m => m.FavouritePageModule)
+  }
 ];
 
 @NgModule({
