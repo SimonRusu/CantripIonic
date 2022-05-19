@@ -14,6 +14,7 @@ export class RouteSettingsComponent implements OnInit {
   @Input() numberOfPeople !: number;
   @Input() date !: string;
   @Input() startingTime !: string;
+  @Input() userUuid !: string;
 
   constructor(
     private db: SQLiteService,
@@ -41,10 +42,10 @@ export class RouteSettingsComponent implements OnInit {
   }
 
   saveFavourite() {
-
+    console.log(this.userUuid);
     this.db.addFavSwitch(
       this.routeId,
-      "uuid",
+      this.userUuid,
       JSON.stringify(this.routeData)
     );
   }

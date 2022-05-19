@@ -1,6 +1,6 @@
   <div *ngIf="routeData; else empty">
     <h1 class="text-center">{{routeData.routeName}}</h1>
-    <app-route-settings [routeId]="routeId" [routeData]="routeData" [numberOfPeople]="routeData.numberOfPeople" [date]="routeData.dateAvailability[0]" [startingTime]="routeData.startTime"></app-route-settings>
+    <app-route-settings [routeId]="routeId" [routeData]="routeData" [numberOfPeople]="routeData.numberOfPeople" [date]="routeData.dateAvailability[0]" [startingTime]="routeData.startTime" [userUuid]="user?.uid"></app-route-settings>
     <div class="route-container">
       <app-timetable [routeActivities]="routeData.activities" [startActivityTime]="routeData.startTime"></app-timetable>
     <div class="map-button-container">
@@ -20,7 +20,7 @@
         <button class="cart-btn"><img src="../assets/media/shoppingcart-icon.png" id="cart-img"></button>
       </div>
     </div>
-  
+
 
 
 <div class="w-100 footer-margin"></div>

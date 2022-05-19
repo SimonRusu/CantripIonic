@@ -1,19 +1,19 @@
 <section class="route-settings-container">
-  <div class="input_overlay" id="people-selector-container"> 
-      <p>{{numberOfPeople}}</p><img class="user-icon" src="assets/media/user-icon.png"/> 
-      <div id="arrows-selector"> 
-          <button class="route-page-arrow"><img src="assets/media/pagination/ios-arrow-left.svg" id="arrow-number-people-image-up"/></button> 
-          <button class="route-page-arrow"><img src="assets/media/pagination/ios-arrow-left.svg" id="arrow-number-people-image-down"/></button> 
-      </div> 
-  </div>     
-  <div class="input_overlay datetime-selector-container"> 
-      <img class="user-icon" src="assets/media/calendar-icon.png"><p>{{date}}</p> 
-  </div> 
-  <div class="input_overlay datetime-selector-container "> 
-      <img class="user-icon" src="assets/media/clock-icon.png"><p>{{startingTime}}</p> 
-  </div> 
+  <div class="input_overlay" id="people-selector-container">
+      <p>{{numberOfPeople}}</p><img class="user-icon" src="assets/media/user-icon.png"/>
+      <div id="arrows-selector">
+          <button class="route-page-arrow"><img src="assets/media/pagination/ios-arrow-left.svg" id="arrow-number-people-image-up"/></button>
+          <button class="route-page-arrow"><img src="assets/media/pagination/ios-arrow-left.svg" id="arrow-number-people-image-down"/></button>
+      </div>
+  </div>
+  <div class="input_overlay datetime-selector-container">
+      <img class="user-icon" src="assets/media/calendar-icon.png"><p>{{date}}</p>
+  </div>
+  <div class="input_overlay datetime-selector-container ">
+      <img class="user-icon" src="assets/media/clock-icon.png"><p>{{startingTime}}</p>
+  </div>
 
-  <div class="input_overlay" id="favourite-container"> 
+  <div *ngIf="userUuid" class="input_overlay" id="favourite-container">
     <span (click)="saveFavourite();" class="material-icons md-36" id="starIcon">star_border</span>
 </div>
 </section>

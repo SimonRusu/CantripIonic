@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { switchMap } from 'rxjs/operators';
 import {FirestoreService} from "../services/firestore/firestore.service";
+import {FireAuthService} from "../services/firestore/fire-auth.service";
 
 
 
@@ -28,10 +29,11 @@ export class RoutePage implements OnInit {
 
   routeParams = this.activatedRoute.snapshot.params["id"];
   routeId !: string;
-  routeData : any;
+  routeData !: any;
+  user !: any;
 
 
-  constructor(private activatedRoute: ActivatedRoute, private firestoreService: FirestoreService) {   
+  constructor(private activatedRoute: ActivatedRoute, private firestoreService: FirestoreService, private fireAuth: FireAuthService) {
   }
 
   ngOnInit(): void {
@@ -39,6 +41,14 @@ export class RoutePage implements OnInit {
       this.routeData = route.payload.data();
       this.routeId = route.payload.id;
     })
-    
+    this.getUser();
+
   }
+  async getUser(){
+    await this.fireAuth.userDetails().forEach(user => {
+      this.user = user;
+      return;
+    });
+  }
+
 }
