@@ -1,16 +1,17 @@
 <ion-content>
     <section class="profile_container">
-        <div class="imageContainer" (click)="openImageDialog()">
-            <img class="userImage" alt="User profile photo" src="../../assets/media/user.jpg" />
-            <!--{{(profileData|async)?.photoURL}}-->
+        <div class="imageContainer">
+            <img class="userImage" alt="User profile photo" src="{{(profileData|async)?.photoURL}}" />
+            <!---->
         </div>
     </section>
 
     <section class="photo_container">
         <div class="photo_element">
-            <label class="edit-photo" for="files" class="btn">Change your profile photo<img class="editIcon"
+            <label class="edit-photo" for="fileInput" class="btn">Change your profile photo<img class="editIcon"
                     type="image" src="../assets/media/edit-icon.png" alt="User profile photo" /></label>
-            <input type="file" id="files" accept="image/*" style="visibility:hidden;" />
+            <input type="file" id="fileInput" accept="image/*" style="display: none" (change)="onUpload($event)"
+                #fileInput />
         </div>
     </section>
 
@@ -22,12 +23,18 @@
 
     <section class="name_container">
         <div class="name_element input_cover">
-            <input placeholder="{{(profileData|async)?.displayName}}" type="text" [(ngModel)]="updatedName" />
+            <input placeholder="{{(profileData|async)?.displayName}}" type="text" [(ngModel)]="updatedName"
+                [value]="fullname" />
             <img src="../assets/media/edit-icon.png" alt="Edit name" (click)="editName()">
         </div>
     </section>
+    <div class="text-center">
+        <button [routerLink]="['/favoritos']" routerLinkActive="active" class="input_overlay_submit logout favourite">
+            Favourites</button>
+    </div>
 
     <div class="password_button">
         <input type="submit" (click)="logout()" class="input_overlay_submit logout" value="Logout" />
     </div>
+
 </ion-content>

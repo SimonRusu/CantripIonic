@@ -14,16 +14,14 @@ export class FireAuthService {
   }
 
   async singUp(email: string, password: string, fullName: string,) {
-    this.angularFireAuth.createUserWithEmailAndPassword(email, password).then(resp => {
+    await this.angularFireAuth.createUserWithEmailAndPassword(email, password).then(resp => {
       resp.user.updateProfile({
         displayName: fullName,
       });
     })
       .catch(error => {
         console.log("Something went wrong in register: ", error.message);
-
       })
-
   }
 
   async singIn(email: string, password: string): Promise<boolean> {

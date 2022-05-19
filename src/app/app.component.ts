@@ -10,17 +10,16 @@ export class AppComponent implements OnInit {
   logged !: boolean;
   constructor(private fireAuth: FireAuthService) { }
   ngOnInit(): void {
-    this.logged = this.checkLoggedIn();
+    this.checkLoggedIn();
   }
-  checkLoggedIn(): boolean {
-    this.fireAuth.checkLoggedIn();
-    let dato = localStorage.getItem('user');
-    if (dato !== "false") {
-      console.log("logueado");
-      return true;
-    } else {
-      console.log("no logueado");
-      return false;
-    }
+  async checkLoggedIn() {
+    await this.fireAuth.userDetails().forEach((user) => {
+      if (user) {
+        this.logged = true;
+      } else {
+        this.logged = false;
+      }
+      return;
+    });
   }
 }

@@ -105,19 +105,20 @@ let AppComponent = class AppComponent {
         this.fireAuth = fireAuth;
     }
     ngOnInit() {
-        this.logged = this.checkLoggedIn();
+        this.checkLoggedIn();
     }
     checkLoggedIn() {
-        this.fireAuth.checkLoggedIn();
-        let dato = localStorage.getItem('user');
-        if (dato !== "false") {
-            console.log("logueado");
-            return true;
-        }
-        else {
-            console.log("no logueado");
-            return false;
-        }
+        return (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__awaiter)(this, void 0, void 0, function* () {
+            yield this.fireAuth.userDetails().forEach((user) => {
+                if (user) {
+                    this.logged = true;
+                }
+                else {
+                    this.logged = false;
+                }
+                return;
+            });
+        });
     }
 };
 AppComponent.ctorParameters = () => [
@@ -326,8 +327,7 @@ let FireAuthService = class FireAuthService {
     }
     singUp(email, password, fullName) {
         return (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__awaiter)(this, void 0, void 0, function* () {
-            console.log("AQUIIIIIIIII");
-            this.angularFireAuth.createUserWithEmailAndPassword(email, password).then(resp => {
+            yield this.angularFireAuth.createUserWithEmailAndPassword(email, password).then(resp => {
                 resp.user.updateProfile({
                     displayName: fullName,
                 });
