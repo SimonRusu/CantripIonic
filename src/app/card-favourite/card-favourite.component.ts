@@ -23,7 +23,7 @@ export class CardFavouriteComponent implements OnInit {
   deleteFavourite(){
     this.db.deleteFavRoute(this.routeId).then(async(res) => {
       let toast = await this.toast.create({
-        message: 'Ruta eliminada de favoritos',
+        message: 'Deleted Route from favourites',
         duration: 1000
       });
       toast.present();

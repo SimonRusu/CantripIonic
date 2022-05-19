@@ -38,9 +38,7 @@ export class PasswordPage implements OnInit {
   }
 
   navigateTo(route: string): void {
-    this.router.navigate([route]).then(() =>{
-      window.location.reload();
-    });
+    this.router.navigate([route]);
   }
   async dontMatchToast(){
     const toast = await this.toastCtrl.create({

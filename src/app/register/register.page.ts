@@ -52,9 +52,7 @@ export class RegisterPage implements OnInit {
 
   }
   navigateTo(route: string): void {
-    this.router.navigate([route]).then(() => {
-      window.location.reload();
-    });
+    this.router.navigate([route]);
   }
 
   async openToast() {

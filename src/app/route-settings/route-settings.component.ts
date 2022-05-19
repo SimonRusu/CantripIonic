@@ -16,15 +16,15 @@ export class RouteSettingsComponent implements OnInit {
   @Input() startingTime !: string;
   @Input() userUuid !: string;
 
+  star !: string;
+
   constructor(
     private db: SQLiteService,
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.setFavouriteIcon();
-    $("#starIcon").click(function(){
-      $(this).text(($(this).text() === 'star_border') ? 'grade' : 'star_border');
-    });
   }
 
   async setFavouriteIcon(){
@@ -36,6 +36,11 @@ export class RouteSettingsComponent implements OnInit {
       } else {
         $('#starIcon').text('star_border');
       }
+
+      $('#starIcon').click(function(){
+        $(this).text(($(this).text() === 'star_border') ? 'grade' : 'star_border');
+      });
+      return;
     });
 
 

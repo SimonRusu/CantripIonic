@@ -25,6 +25,9 @@ export class ProfilePage implements OnInit {
 
   ngOnInit(): void {
     this.profileData = this.fireAuth.userDetails();
+    this.profileData.subscribe((user) => {
+      this.fullname = user.displayName;
+    });
   }
 
   onUpload(event: any): void {
