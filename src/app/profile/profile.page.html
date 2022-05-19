@@ -1,11 +1,17 @@
 <ion-content>
     <section class="profile_container">
         <div class="imageContainer" (click)="openImageDialog()">
-            <img class="userImage" alt="User profile photo" src="{{(profileData|async)?.photoURL}}"
-                onerror="if (this.src != '') this.src = './assets/media/user.jpg';" />
-            <img class="editIcon" type="image" src="../assets/media/edit-icon.png" alt="User profile photo" />
+            <img class="userImage" alt="User profile photo" src="../../assets/media/user.jpg" />
+            <!--{{(profileData|async)?.photoURL}}-->
         </div>
+    </section>
 
+    <section class="photo_container">
+        <div class="photo_element">
+            <label class="edit-photo" for="files" class="btn">Change your profile photo<img class="editIcon"
+                    type="image" src="../assets/media/edit-icon.png" alt="User profile photo" /></label>
+            <input type="file" id="files" accept="image/*" style="visibility:hidden;" />
+        </div>
     </section>
 
     <section class="email_container">
@@ -17,7 +23,7 @@
     <section class="name_container">
         <div class="name_element input_cover">
             <input placeholder="{{(profileData|async)?.displayName}}" type="text" [(ngModel)]="updatedName" />
-            <img src="../assets/media/edit-icon.png" alt="Edit name" (click)="editName()" [>
+            <img src="../assets/media/edit-icon.png" alt="Edit name" (click)="editName()">
         </div>
     </section>
 

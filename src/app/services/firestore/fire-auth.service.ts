@@ -14,7 +14,6 @@ export class FireAuthService {
   }
 
   async singUp(email: string, password: string, fullName: string,) {
-    console.log("AQUIIIIIIIII");
     this.angularFireAuth.createUserWithEmailAndPassword(email, password).then(resp => {
       resp.user.updateProfile({
         displayName: fullName,

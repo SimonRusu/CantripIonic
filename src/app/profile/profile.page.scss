@@ -10,7 +10,7 @@
     border-radius: 50%;
 }
 
-.imageContainer:hover .editIcon {
+.editIcon {
     display: block;
 }
 
@@ -40,15 +40,22 @@
 
 
 .email_container,
-.name_container {
+.name_container,
+.photo_container {
     margin-top: 20em;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.edit-photo {
+    display: flex;
+    flex-direction: row;
+}
+
 .email_element>img,
-.name_element>img {
+.name_element>img,
+.photo_element>label>img {
     object-fit: contain;
     height: 20px;
     padding-left: 3em;
@@ -56,7 +63,8 @@
 }
 
 .email_element>input,
-.name_element>img {
+.name_element>input,
+.photo_element>input {
     outline: none;
     border: none;
     background: none;
@@ -64,7 +72,8 @@
 }
 
 .email_element,
-.name_element {
+.name_element,
+.photo_element {
     display: flex;
     align-items: center;
     justify-content: center;

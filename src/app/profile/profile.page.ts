@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-//import { ToastController } from "@ionic/angular";
+import { ToastController } from "@ionic/angular";
 import { FireAuthService } from '../services/firestore/fire-auth.service';
 
 @Component({
@@ -16,17 +16,11 @@ export class ProfilePage implements OnInit {
   updatedName: string;
 
 
-  constructor(public fireAuth: FireAuthService/*, private toastCtrl: ToastController*/) {
+  constructor(public fireAuth: FireAuthService, private toastCtrl: ToastController) {
   }
 
   ngOnInit(): void {
     this.profileData = this.fireAuth.userDetails();
-    this.profileData.subscribe(user => {
-      user.updateProfile({
-        displayName: "Maria"
-      });
-      //this.openToast();
-    })
   }
 
   /*openImageDialog(): void {
@@ -36,7 +30,7 @@ export class ProfilePage implements OnInit {
        });
   }*/
 
-  /*async openToast() {
+  async openToast() {
     const toast = await this.toastCtrl.create({
       message: 'Changed name successfully!',
       duration: 3000
@@ -51,7 +45,7 @@ export class ProfilePage implements OnInit {
     });
     toast.present();
 
-  }*/
+  }
 
 
   editName(): void {
@@ -59,9 +53,8 @@ export class ProfilePage implements OnInit {
       user.updateProfile({
         displayName: this.updatedName
       });
-      //this.openToast();
+      this.openToast();
     })
-
   }
 
   logout() {
