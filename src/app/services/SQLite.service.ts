@@ -27,7 +27,7 @@ export class SQLiteService {
 
     this.getUser();
 
-    
+
     this.platform.ready().then(() => {
       this.sqlite.create({
         name: 'favouriteRoutes.db',
@@ -40,7 +40,7 @@ export class SQLiteService {
     });
   }
 
-  
+
 
   createTableFavRoutes(): void{
     var sql = 'create table IF NOT EXISTS favRoutes(id INTEGER PRIMARY KEY AUTOINCREMENT, routeId TEXT, uuid TEXT, route TEXT)';
@@ -131,9 +131,9 @@ export class SQLiteService {
 
   //Add or delete
   async addFavSwitch(routeId:string, uuid:string, route:string){
-    this.getFavRoute(routeId).subscribe(exists =>{
+    await this.getFavRoute(routeId).subscribe(exists =>{
       if(exists == 'false'){
-        this.addFavRoute(routeId, uuid, route);
+         this.addFavRoute(routeId, uuid, route);
       }
       else{
         this.deleteFavRoute(routeId);

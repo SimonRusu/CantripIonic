@@ -4,6 +4,7 @@ import { ToastController } from "@ionic/angular";
 import { FireAuthService } from '../services/firestore/fire-auth.service';
 import { FileUpload } from '../models/FileUpload';
 import { FileUploadService } from '../services/file-upload.service';
+import {User} from "firebase/auth";
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +20,7 @@ export class ProfilePage implements OnInit {
   fullname: string;
   selectedFile: File;
   fileUpload: FileUpload;
+  user !: User;
 
   constructor(public fireAuth: FireAuthService, private toastCtrl: ToastController, private uploadService: FileUploadService) {
   }
@@ -26,6 +28,7 @@ export class ProfilePage implements OnInit {
   ngOnInit(): void {
     this.profileData = this.fireAuth.userDetails();
     this.profileData.subscribe((user) => {
+      this.user = user;
       this.fullname = user.displayName;
     });
   }
