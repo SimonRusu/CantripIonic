@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'firebase/auth';
+import { FireAuthService } from '../services/firestore/fire-auth.service';
 
 @Component({
   selector: 'app-header-login',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderLoginPage implements OnInit {
 
-  constructor() { }
+  user: User;
+  
+  constructor(public fireAuth: FireAuthService) { }
 
+  
   ngOnInit() {
+    this.getUser();
   }
+
+  async getUser(){
+    this.fireAuth.userDetails().subscribe(user => {
+      this.user = user;
+    });
+  }
+
+
 
 }

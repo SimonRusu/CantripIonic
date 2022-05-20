@@ -4,6 +4,8 @@ import { BehaviorSubject, EMPTY, Observable, of } from 'rxjs';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { Route, RouteSQLite } from '../models/route';
 import { JsonPipe } from '@angular/common';
+import { FireAuthService } from './firestore/fire-auth.service';
+import { User } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +14,20 @@ export class SQLiteService {
   private storage: SQLiteObject;
   routeList = new BehaviorSubject([]);
   foundRoute = new BehaviorSubject('');
+  user : User;
 
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(
     private platform: Platform,
     private sqlite: SQLite,
+    private fireAuth: FireAuthService
 
   ) {
+
+    this.getUser();
+
+    
     this.platform.ready().then(() => {
       this.sqlite.create({
         name: 'favouriteRoutes.db',
@@ -28,10 +36,11 @@ export class SQLiteService {
       .then((db: SQLiteObject) => {
           this.storage = db;
           this.createTableFavRoutes();
-          this.getFavRoutes();
-      });
+      })
     });
   }
+
+  
 
   createTableFavRoutes(): void{
     var sql = 'create table IF NOT EXISTS favRoutes(id INTEGER PRIMARY KEY AUTOINCREMENT, routeId TEXT, uuid TEXT, route TEXT)';
@@ -72,7 +81,7 @@ export class SQLiteService {
 
    getFavRoute(routeId: string): Observable<string>{
     this.foundRoute = new BehaviorSubject('');
-    this.storage.executeSql('SELECT * FROM favRoutes where routeId = ?', [routeId]).then(res => {
+    this.storage.executeSql('SELECT * FROM favRoutes where routeId = ? and uuid = ?', [routeId, this.user.uid]).then(res => {
       if (res.rows.length > 0) {
         this.foundRoute.next('true');
       }
@@ -89,6 +98,11 @@ export class SQLiteService {
       let route: RouteSQLite[] = [];
       if (res.rows.length > 0) {
         for (var i = 0; i < res.rows.length; i++) {
+          route.push({
+            routeId: res.rows.item(i).routeId,
+            uuid: "uuid",
+            route: JSON.parse(res.rows.item(i).route)
+          })
         }
       }
       this.routeList.next(route);
@@ -101,15 +115,17 @@ export class SQLiteService {
 
     return this.storage.executeSql('INSERT INTO favRoutes (routeId, uuid, route) VALUES (?, ?, ?)', data)
     .then(_ => {
-      this.getFavRoutes();
+      this.getFavRoutesByUser(this.user.uid);
     });
   }
 
   // Delete
   async deleteFavRoute(routeId:string) {
-    return this.storage.executeSql('DELETE FROM favRoutes WHERE routeId = ?', [routeId])
+    console.log(this.user.uid, "DELETEADO");
+    return this.storage.executeSql('DELETE FROM favRoutes WHERE routeId = ? and uuid = ?', [routeId,this.user.uid])
     .then(_ => {
-      this.getFavRoutes();
+
+      this.getFavRoutesByUser(this.user.uid);
     });
   }
 
@@ -123,6 +139,13 @@ export class SQLiteService {
         this.deleteFavRoute(routeId);
       }
     })
+  }
+
+  async getUser(){
+    await this.fireAuth.userDetails().forEach(user => {
+      this.user = user;
+      return;
+    });
   }
 }
 
