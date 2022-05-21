@@ -20,6 +20,7 @@ export class RouteSettingsComponent implements OnInit {
 
   constructor(
     private db: SQLiteService,
+    private toast: ToastController
   ) {
   }
 
@@ -31,8 +32,7 @@ export class RouteSettingsComponent implements OnInit {
     console.log("se ejecuta");
     await this.db.getFavRoute(this.routeId).forEach(foundRoute => {
       if (foundRoute === "true") {
-        console.log("favorita");
-        $('#starIcon').text('grade');
+        $('#starIcon').text('grade'); 
       } else {
         $('#starIcon').text('star_border');
       }
@@ -40,18 +40,33 @@ export class RouteSettingsComponent implements OnInit {
       $('#starIcon').click(function(){
         $(this).text(($(this).text() === 'star_border') ? 'grade' : 'star_border');
       });
-      return;
+
+
     });
 
 
   }
 
   saveFavourite() {
-    console.log(this.userUuid);
     this.db.addFavSwitch(
       this.routeId,
       this.userUuid,
       JSON.stringify(this.routeData)
     );
+
+    if($('#starIcon').text() === 'star_border'){
+      this.showToast("Added route to favourites"); 
+    }
+    else{
+      this.showToast("Deleted route from favourites"); 
+    }
+  }
+
+  async showToast(message: string){
+    let toast = await this.toast.create({
+      message: message,
+      duration: 1000
+    });
+    toast.present();
   }
 }
