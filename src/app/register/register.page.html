@@ -11,7 +11,7 @@
 
     </ion-input>
 
-    <ion-input type="password" name="passwordLogin" class="input_overlay validation-text"
+    <ion-input type="password" name="passwordLogin" class="input_overlay validation-text first"
       placeholder="enter your password" formControlName="password" [class.valid]="registerForm.get('password')?.valid &&
               (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)" [class.invalid]="registerForm.get('password')?.invalid &&
               (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)"></ion-input>
