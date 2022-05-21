@@ -1,8 +1,17 @@
-.formContainer > div > ion-button{
+.formContainer>div>ion-button {
   width: 10rem;
   height: 3rem;
 }
 
-form > .input_overlay{
-  width: 100%;
+form>.input_overlay {
+  //width: 100%;
+  width: 15rem;
+  justify-self: center;
+  align-self: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
