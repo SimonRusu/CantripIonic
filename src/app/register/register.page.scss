@@ -8,8 +8,13 @@ form>.input_overlay {
   width: 15rem;
   justify-self: center;
   align-self: center;
+  margin-bottom: auto;
 }
-
+.text-danger{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
 form {
   display: flex;
   flex-direction: column;
